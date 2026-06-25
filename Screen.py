@@ -1,20 +1,16 @@
-from ButtonInput import ButtonInput
-from ssd1306 import SSD1306_I2C
-from ScreensHelper import ScreensHelper
 from abc import ABC, abstractmethod
-import asyncio
 
 class Screen(ABC):
     
     def __init__(self,
-                 width: int,
-                 height: int,
-                 display: SSD1306_I2C,
-                 button_input: button_input,
-                 screens_helper: screens_helper,
-                 name: str = "Parent Screen Class",
-                 parent: Screen = None,
-                 active: bool = False):
+                 width,
+                 height,
+                 display,
+                 button_input,
+                 screens_helper,
+                 name = "Parent Screen Class",
+                 parent = None,
+                 active = False):
         self.parent = parent
         self.button_input = button_input
         self.screens_helper = screens_helper

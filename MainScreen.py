@@ -1,21 +1,17 @@
-from Screen import Screen
-from ButtonInput import ButtonInput
-from ssd1306 import SSD1306_I2C
-from ScreensHelper import ScreensHelper
-from Menu import Menu
+from core.Screen import Screen
 
 class MainScreen(Screen):
 
     def __init__(self,
-                 width: int,
-                 height: int,
-                 display: SSD1306_I2C,
-                 button_input: ButtonInput,
-                 screens_helper: ScreensHelper,
-                 main_menu: Menu,
-                 name: str = "Parent Screen Class",
-                 parent: Screen = None,
-                 active: bool = False):
+                 width,
+                 height,
+                 display,
+                 button_input,
+                 screens_helper,
+                 main_menu,
+                 name = "Parent Screen Class",
+                 parent = None,
+                 active = False):
         super().__init__(width, height, display, button_input, screens_helper, name, parent, active)
         self.last_button_pressed = None
         self.main_menu = main_menu

@@ -1,4 +1,4 @@
-from Screen import Screen
+from core.Screen import Screen
 
 class CountScreen(Screen):
     count = 0

@@ -1,21 +1,17 @@
-from Screen import Screen
-from Menu import Menu, MenuItem
-from ButtonInput import ButtonInput
-from ssd1306 import SSD1306_I2C
-from ScreensHelper import ScreensHelper
-from MainScreen import MainScreen
+from core.Screen import Screen
+from core.Menu import Menu, MenuItem
 
 class PauseScreen(Screen):
 
     def __init__(self,
-                 width: int,
-                 height: int,
-                 display: SSD1306_I2C,
-                 button_input: ButtonInput,
-                 screens_helper: ScreensHelper,
-                 name: str = "Parent Screen Class",
-                 parent: Screen = None,
-                 active: bool = False):
+                 width,
+                 height,
+                 display,
+                 button_input,
+                 screens_helper,
+                 name = "Parent Screen Class",
+                 parent = None,
+                 active = False):
         super().__init__(width, height, display, button_input, screens_helper, name, parent, active)
         self.exit_item = MenuItem("Exit", screen_instance=self.parent)
         self.pause_menu = Menu([MenuItem("Resume"), self.exit_item])

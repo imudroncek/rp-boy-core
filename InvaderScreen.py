@@ -1,5 +1,5 @@
 import framebuf
-from Screen import Screen
+from core.Screen import Screen
 
 class InvaderScreen(Screen):
     counter = 1
@@ -28,6 +28,33 @@ class InvaderScreen(Screen):
             else:
                 self.counter += 1
         self.display.blit(self.canvas, self.counter, 0)
+
+    def _a_pressed(self):
+        pass
+
+    def _b_pressed(self):
+        pass
+
+    def _select_pressed(self):
+        pass
+
+    def _up_pressed(self):
+        pass
+
+    def _down_pressed(self):
+        pass
+
+    def _left_pressed(self):
+        pass
+
+    def _right_pressed(self):
+        pass
+
+    def _zl_pressed(self):
+        pass
+
+    def _zr_pressed(self):
+        pass
             
         
     
