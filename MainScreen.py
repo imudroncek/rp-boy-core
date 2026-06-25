@@ -34,23 +34,22 @@ class MainScreen(Screen):
 
     def _get_previous(self):
         if (self.main_menu.has_previous_item()):
-            self.display.text(self.main_menu.get_item_shortname(self.main_menu.get_selected_item_index()-1), 5, 18, 1)
-            self.display.line(62, 14, 64, 12, 1)
-            self.display.line(64, 12, 66, 14, 1)
+            self.display.text(self.main_menu.get_item_shortname(self.main_menu.get_selected_item_index()-1), 5, 49, 1)
+            self.display.line(62, 45, 64, 43, 1)
+            self.display.line(64, 43, 66, 45, 1)
             
-
     def _get_selected(self):
-        self.display.rect(3, 26, self.width-6, 12, 1)
-        self.display.line(4, 36, self.width-5, 36, 1)
-        self.display.text(self.main_menu.get_item_shortname(self.main_menu.get_selected_item_index()), 5, 28, 1)
+        self.display.rect(3, 57, self.width-6, 12, 1)
+        self.display.line(4, 67, self.width-5, 67, 1)
+        self.display.text(self.main_menu.get_item_shortname(self.main_menu.get_selected_item_index()), 5, 59, 1)
 
     def _get_next(self):
         if (self.main_menu.has_next_item()):
-            self.display.text(self.main_menu.get_item_shortname(self.main_menu.get_selected_item_index()+1), 5, 39, 1)
-            self.display.line(62, 49, 64, 51, 1)
-            self.display.line(64, 51, 66, 49, 1)
+            self.display.text(self.main_menu.get_item_shortname(self.main_menu.get_selected_item_index()+1), 5, 70, 1)
+            self.display.line(62, 80, 64, 82, 1)
+            self.display.line(64, 82, 66, 80, 1)
             
-        
+    
     def _a_pressed(self):
         self.last_button_pressed = 'A'
         if (self.main_menu.has_previous_item()):

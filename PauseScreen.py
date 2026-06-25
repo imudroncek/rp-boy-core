@@ -32,25 +32,25 @@ class PauseScreen(Screen):
         self.display.fill(1)
         self.display.fill_rect(3, 3, self.width - 6, self.height - 6, 0)
         self.display.text(self.name, 5, 5, 1)
-        self.display.line(3, 14, self.width - 6, 14, 1)
+        self.display.line(3, 14, self.width - 4, 14, 1)
 
     def _get_previous(self):
         if (self.pause_menu.has_previous_item()):
-            self.display.text(self.pause_menu.get_item_shortname(self.pause_menu.get_selected_item_index()-1), 8, 21, 1)
-            self.display.line(62, 17, 64, 15, 1)
-            self.display.line(64, 15, 66, 17, 1)
+            self.display.text(self.pause_menu.get_item_shortname(self.pause_menu.get_selected_item_index()-1), 8, 49, 1)
+            self.display.line(62, 45, 64, 43, 1)
+            self.display.line(64, 43, 66, 45, 1)
             
 
     def _get_selected(self):
-        self.display.rect(6, 29, self.width-9, 12, 1)
-        self.display.line(7, 39, self.width-8, 39, 1)
-        self.display.text(self.pause_menu.get_item_shortname(self.pause_menu.get_selected_item_index()), 8, 31, 1)
+        self.display.rect(6, 57, self.width-12, 12, 1)
+        self.display.line(7, 67, self.width-8, 67, 1)
+        self.display.text(self.pause_menu.get_item_shortname(self.pause_menu.get_selected_item_index()), 8, 59, 1)
 
     def _get_next(self):
         if (self.pause_menu.has_next_item()):
-            self.display.text(self.pause_menu.get_item_shortname(self.pause_menu.get_selected_item_index()+1), 8, 42, 1)
-            self.display.line(62, 52, 64, 54, 1)
-            self.display.line(64, 54, 66, 52, 1)
+            self.display.text(self.pause_menu.get_item_shortname(self.pause_menu.get_selected_item_index()+1), 8, 70, 1)
+            self.display.line(62, 80, 64, 82, 1)
+            self.display.line(64, 82, 66, 80, 1)
 
     def _a_pressed(self):
         if (self.pause_menu.has_previous_item()):
