@@ -17,11 +17,16 @@ class MainScreen(Screen):
         self.main_menu = main_menu
 
     def _render(self):
-        self._get_header()
         self._get_previous()
         self._get_selected()
         self._get_next()
         self._get_footer()
+
+    def _clear_dynamic_content(self):
+        self.display.fill_rect(0, 43, self.width - 1, self.height - 1, 0)
+
+    def _render_static_content(self):
+        self._get_header()
 
     def _get_header(self):
         self.display.text(self.name, 0, 0, 1)

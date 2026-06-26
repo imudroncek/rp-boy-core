@@ -21,10 +21,18 @@ class Screen(ABC):
         self.active = active
 
     def render(self):
-        self.display.fill(0)
         if self.active:
+            self._clear_dynamic_content()
             self._render()
         self.display.show()
+
+    @abstractmethod
+    def _clear_dynamic_content(self):
+        pass
+
+    @abstractmethod
+    def _render_static_content(self):
+        pass
         
     @abstractmethod
     def _render(self):
@@ -116,6 +124,7 @@ class Screen(ABC):
         self.button_input.zl.physical_button.when_pressed=self._zl
         self.button_input.zr.physical_button.when_pressed=self._zr
         self.display.fill(0)
+        self._render_static_content()
         self.display.show()
         
     def activate(self):

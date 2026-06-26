@@ -16,9 +16,6 @@ class InvaderScreen(Screen):
     ])
     canvas = framebuf.FrameBuffer(invader, 8, 8, framebuf.MONO_HMSB)
     
-    def callback():
-        pass
-    
     def _render(self):
         if (self.counter >= 0 and self.counter <= 119):
             if (self.counter == 0 or self.counter == 119):
@@ -28,6 +25,12 @@ class InvaderScreen(Screen):
             else:
                 self.counter += 1
         self.display.blit(self.canvas, self.counter, 0)
+
+    def _clear_dynamic_content(self):
+        self.display.fill_rect(0, 0, self.width - 1, 9, 0)
+
+    def _render_static_content(self):
+        pass
 
     def _a_pressed(self):
         pass

@@ -23,12 +23,14 @@ class PauseScreen(Screen):
         self.pause_menu = Menu([MenuItem("Resume", screen_instance=instance), self.exit_item])
     
     def _render(self):
-        self._get_header()
         self._get_previous()
         self._get_selected()
         self._get_next()
 
-    def _get_header(self):
+    def _clear_dynamic_content(self):
+        self.display.fill_rect(3, 43, self.width - 6, self.height - 86, 0)
+
+    def _render_static_content(self):
         self.display.fill(1)
         self.display.fill_rect(3, 3, self.width - 6, self.height - 6, 0)
         self.display.text(self.name, 5, 5, 1)
@@ -40,7 +42,6 @@ class PauseScreen(Screen):
             self.display.line(62, 45, 64, 43, 1)
             self.display.line(64, 43, 66, 45, 1)
             
-
     def _get_selected(self):
         self.display.rect(6, 57, self.width-12, 12, 1)
         self.display.line(7, 67, self.width-8, 67, 1)
