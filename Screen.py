@@ -6,6 +6,7 @@ class Screen(ABC):
                  width,
                  height,
                  display,
+                 canvas,
                  button_input,
                  screens_helper,
                  name = "Parent Screen Class",
@@ -18,12 +19,14 @@ class Screen(ABC):
         self.width = width
         self.height = height
         self.display = display
+        self.canvas = canvas
         self.active = active
 
     def render(self):
         if self.active:
             self._clear_dynamic_content()
             self._render()
+            self.display.blit(self.canvas, 0, 0)
         self.display.show()
 
     @abstractmethod
@@ -123,8 +126,9 @@ class Screen(ABC):
         self.button_input.right.physical_button.when_pressed=self._right
         self.button_input.zl.physical_button.when_pressed=self._zl
         self.button_input.zr.physical_button.when_pressed=self._zr
-        self.display.fill(0)
+        self.canvas.fill(0)
         self._render_static_content()
+        self.display.blit(self.canvas, 0, 0)
         self.display.show()
         
     def activate(self):

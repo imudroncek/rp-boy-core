@@ -12,11 +12,11 @@ class CountScreen(Screen):
     
     def _render(self):
         if (not self.pause):
-            self.display.text(str(self.count), 1, 1, 1)
+            self.canvas.text(str(self.count), 1, 1, 1)
             self.count_up()
 
     def _clear_dynamic_content(self):
-        self.display.fill_rect(0, 0, self.width - 1, 8, 0)
+        self.canvas.fill_rect(0, 0, self.width - 1, 8, 0)
 
     def _render_static_content(self):
         pass

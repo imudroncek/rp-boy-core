@@ -5,16 +5,16 @@ class InvaderScreen(Screen):
     counter = 1
     flip = False
     invader = bytearray([
-        0b10000001,  # █      █
-        0b00100100,  #   █  █  
-        0b01111110,  #  ██████ 
-        0b11011011,  # ██ ██ ██
-        0b11111111,  # ████████
-        0b00111100,  #   ████  
-        0b01000010,  #  █    █ 
-        0b10100101   # █ █  █ █
+        0b10011001,  #█..██..█
+        0b01011100,  #.█.███..
+        0b10110110,  #█.██.██.
+        0b00111100,  #..████..
+        0b00111100,  #..████..
+        0b10110110,  #█.██.██.
+        0b01011100,  #.█.███..
+        0b10011001   #█..██..█
     ])
-    canvas = framebuf.FrameBuffer(invader, 8, 8, framebuf.MONO_HMSB)
+    invader_buffer = framebuf.FrameBuffer(invader, 8, 8, framebuf.MONO_VLSB)
     
     def _render(self):
         if (self.counter >= 0 and self.counter <= 119):
@@ -24,10 +24,10 @@ class InvaderScreen(Screen):
                 self.counter -= 1
             else:
                 self.counter += 1
-        self.display.blit(self.canvas, self.counter, 0)
+        self.canvas.blit(self.invader_buffer, self.counter, 0)
 
     def _clear_dynamic_content(self):
-        self.display.fill_rect(0, 0, self.width - 1, 9, 0)
+        self.canvas.fill_rect(0, 0, self.width - 1, 9, 0)
 
     def _render_static_content(self):
         pass

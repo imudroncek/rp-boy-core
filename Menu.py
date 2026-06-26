@@ -49,5 +49,5 @@ class MenuItem:
     def get_screen_instance(self):
         return self.screen_instance
 
-    def get_new_screen_instance(self, width, height, display, button_input, screens_helper, parent):
-        return self.screen_class(width, height, display, button_input, screens_helper, self.name, parent)
+    def get_new_screen_instance(self, width, height, display, canvas, button_input, screens_helper, parent):
+        return self.screen_class(width, height, display, canvas, button_input, screens_helper, self.name, parent)
