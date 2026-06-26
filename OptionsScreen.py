@@ -1,6 +1,6 @@
 from core.Screen import Screen
 
-class MainScreen(Screen):
+class OptionsScreen(Screen):
 
     def __init__(self,
                  width,
@@ -9,26 +9,24 @@ class MainScreen(Screen):
                  canvas,
                  button_input,
                  screens_helper,
+                 options,
                  name = "Parent Screen Class",
                  parent = None,
                  active = False):
         super().__init__(width, height, display, canvas, button_input, screens_helper, name, parent, active)
-        self.main_menu = None
-
-    def set_main_menu(self, main_menu):
-        self.main_menu = main_menu
+        self.options = options
 
     def _render(self):
         self._get_previous()
         self._get_selected()
         self._get_next()
-        self._get_footer()
 
     def _clear_dynamic_content(self):
-        self.canvas.fill_rect(0, 43, self.width - 1, self.height - 1, 0)
+        self.canvas.fill_rect(0, 43, self.width - 1, self.height - 86, 0)
 
     def _render_static_content(self):
         self._get_header()
+        self._get_footer()
 
     def _get_header(self):
         self.canvas.text(self.name, 0, 0, 1)
@@ -39,43 +37,42 @@ class MainScreen(Screen):
         self.canvas.text("Use Start", 0, self.height-7, 1)
 
     def _get_previous(self):
-        if (self.main_menu.has_previous_item()):
-            self.canvas.text(self.main_menu.get_item_shortname(self.main_menu.get_selected_item_index()-1), 5, 49, 1)
+        if (self.options.options_menu.has_previous_item()):
+            self.canvas.text(self.options.options_menu.get_item_shortname(self.options.options_menu.get_selected_item_index()-1), 5, 49, 1)
             self.canvas.line(62, 45, 64, 43, 1)
             self.canvas.line(64, 43, 66, 45, 1)
             
     def _get_selected(self):
         self.canvas.rect(3, 57, self.width-6, 12, 1)
         self.canvas.line(4, 67, self.width-5, 67, 1)
-        self.canvas.text(self.main_menu.get_item_shortname(self.main_menu.get_selected_item_index()), 5, 59, 1)
+        self.canvas.text(self.options.options_menu.get_item_shortname(self.options.options_menu.get_selected_item_index()), 5, 59, 1)
 
     def _get_next(self):
-        if (self.main_menu.has_next_item()):
-            self.canvas.text(self.main_menu.get_item_shortname(self.main_menu.get_selected_item_index()+1), 5, 70, 1)
+        if (self.options.options_menu.has_next_item()):
+            self.canvas.text(self.options.options_menu.get_item_shortname(self.options.options_menu.get_selected_item_index()+1), 5, 70, 1)
             self.canvas.line(62, 80, 64, 82, 1)
             self.canvas.line(64, 82, 66, 80, 1)
             
     
     def _a_pressed(self):
-        if (self.main_menu.has_previous_item()):
-            self.main_menu.previous_item()
+        self.last_button_pressed = 'A'
+        if (self.options.options_menu.has_previous_item()):
+            self.options.options_menu.previous_item()
             
     def _b_pressed(self):
-        if (self.main_menu.has_next_item()):
-            self.main_menu.next_item()
-
-    def _start_pressed(self):
-        self.deactivate()
-        selected_instance = self.main_menu.get_selected_item().get_screen_instance()
-        active_screen = None
-        if (selected_instance == None):
-            active_screen = self.main_menu.get_selected_item().get_new_screen_instance(self.width, self.height, self.display, self.canvas, self.button_input, self.screens_helper, self)
-        else:
-            active_screen = selected_instance
-        self.screens_helper.set_active_screen(active_screen)
-        self.screens_helper.get_active_screen().init()
-        self.screens_helper.get_active_screen().activate()
+        self.last_button_pressed = 'B'
+        if (self.options.options_menu.has_next_item()):
+            self.options.options_menu.next_item()
             
+    def _start_pressed(self):
+        selected_item = self.options.options_menu.get_selected_item()
+        selected_item.handler()
+        if (selected_item.closable):
+            self.deactivate()
+            self.screens_helper.set_active_screen(self.parent)
+            self.screens_helper.get_active_screen().init()
+            self.screens_helper.get_active_screen().activate()
+
     def _select_pressed(self):
         pass
 
